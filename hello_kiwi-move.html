@@ -1,0 +1,62 @@
+<html>
+
+<script src="javascript/jquery-2.0.3.js"></script>
+<script src="javascript/socket.io.js"></script>
+
+<body>
+
+	<p>ACCEL-X: </p><p id="accelerometer-x">0</p>
+	<p>ACCEL-Y: </p><p id="accelerometer-y">0</p>
+	<p>ACCEL-Z: </p><p id="accelerometer-z">0</p>
+	<p>GYRO-X: </p><p id="gyroscope-x">0</p>
+	<p>GYRO-Y: </p><p id="gyroscope-y">0</p>
+	<p>GYRO-Z: </p><p id="gyroscope-z">0</p>
+
+</body>
+
+<script>
+
+ var kiwisocket = io.connect('http://build.kiwiwearables.com:8080');
+
+ var toParse = null;
+ var Ax = 0;
+ var Ay = 0;
+ var Az = 0;
+ var Gx = 0;
+ var Gy = 0;
+ var Gz = 0;
+
+// Enter your device id and password here
+
+kiwisocket.on('connect', function() {
+	kiwisocket.emit('listen', {device_id: '14', password: '123'});
+});
+
+kiwisocket.on('listen_response', function(data) {
+
+	//console.log(data);
+
+	toParse = JSON.parse(data.message);
+
+	Ax = parseFloat(toParse.ax);
+	Ay = parseFloat(toParse.ay);
+	Az = parseFloat(toParse.az);  
+
+	Gx = parseFloat(toParse.gx);
+	Gy = parseFloat(toParse.gy);
+	Gz = parseFloat(toParse.gz);
+
+	$('#accelerometer-x').html(Ax);
+	$('#accelerometer-y').html(Ay);
+	$('#accelerometer-z').html(Az);
+
+	$('#gyroscope-x').html(Gx);
+	$('#gyroscope-y').html(Gy);
+	$('#gyroscope-z').html(Gz);
+
+});
+
+
+</script>
+
+</html>
