@@ -9,6 +9,7 @@ To confirm that your Kiwi is setup and working correctly:
 Check that the light on your Kiwi is blinking, and
 Check that the live graphs in the Kiwi Test Panel are streaming sensor data (accelerometer, gyroscope)
 
+```javascript
 //script src="http://build.kiwiwearables.com:8080/socket.js/socket.io.js"
 				
 var socket = io.connect('http://build.kiwiwearables.com:8080')
@@ -32,3 +33,4 @@ socket.on('listen_response', function(data) {
 			var acceleration_y = kiwi_data.ay;
 			var acceleration_z = kiwi_data.az;
 });  
+```
