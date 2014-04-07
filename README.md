@@ -24,11 +24,10 @@ Check that the live graphs in the Kiwi Test Panel are streaming sensor data (acc
 		
 			var packet_type = kiwi_data.packet_type;  
 	
-			// Capture accelerometer and gyroscope data, or tap motion events
-			// 00 = raw sensor data 
-			// 03 = motion events
+			// Capture accelerometer and gyroscope data
 		
-		var acceleration_x = kiwi_data.ax;
-				var acceleration_y = kiwi_data.ay;
-				var acceleration_z = kiwi_data.az;
+			var acceleration_x = kiwi_data.ax;
+			var acceleration_y = kiwi_data.ay;
+			var acceleration_z = kiwi_data.az;
+			
 	});
