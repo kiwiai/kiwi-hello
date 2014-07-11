@@ -16,7 +16,9 @@
 
 <script>
 
- var kiwisocket = io.connect('http://build.kiwiwearables.com:8080');
+ var kiwisocket = io.connect('https://build.kiwiwearables.com:8080');
+
+ // console.log(kiwisocket);
 
  var toParse = null;
  var Ax = 0;
@@ -25,16 +27,23 @@
  var Gx = 0;
  var Gy = 0;
  var Gz = 0;
+ var Mx = 0;
+ var My = 0;
+ var Mz = 0;
+ var Packet = 0;
+ var count = 0;
+ var trigger = 0;
 
 // Enter your device id and password here
 
 kiwisocket.on('connect', function() {
-	kiwisocket.emit('listen', {device_id: '14', password: '123'});
+	kiwisocket.emit('listen', {device_id: '95', password: '123'});
+	// console.log(kiwisocket);
 });
 
 kiwisocket.on('listen_response', function(data) {
 
-	//console.log(data);
+	// console.log(data);
 
 	toParse = JSON.parse(data.message);
 
